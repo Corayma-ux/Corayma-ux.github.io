@@ -1,0 +1,454 @@
+body{
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+}
+
+.logo {
+    color: white;
+    font-size: 21px;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.logo i {
+    margin-right: 4px;
+}
+
+h2{
+    font-size: 15px;
+}
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    font-size: 18px;
+    width: 100%;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+    width: 100%;
+}
+label{
+    font-size: 14px;
+}
+
+/* Efecto activo para el enlace */
+.navbar a.active {
+    background-color: #000;
+    border: 2px solid #c1c1c1;
+    width: 100%;
+}
+
+/* Mejora de la apariencia del menú al hacer clic */
+.navbar a:focus {
+    outline: none; /* Eliminar el borde de enfoque por defecto */
+}
+
+/* Estilos para el contenedor de la casa y la sección de controladores */
+.content-section {
+    display: none; /* Ocultamos todas las secciones por defecto */
+    padding-top: 60px;
+}
+
+.content-section.active {
+    display: block; /* Solo mostramos la sección activa */
+}
+
+/* Mejoras en los controles */
+.controllers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Tres columnas */
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.controller {
+    background: #a9cdcaa8;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px !important;
+}
+h3{
+ font-weight: normal !important;
+ font-size: 14px;
+}
+
+.controller-area {
+    background: #a9cdcaa8;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 12px !important;
+}
+
+/* Estilo para los controles slider (ON/OFF) */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 34px;
+}
+
+/* Estilo para el input dentro del slider */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Estilo para el fondo del slider (aparece verde o rojo dependiendo del estado) */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+/* Estilo para el círculo interior (el botón que se mueve) */
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+/* Estilo cuando el input está marcado (ON) */
+input:checked + .slider {
+    background-color: #11b017; /* Verde cuando está encendido */
+}
+
+/* Estilo para el círculo cuando el input está marcado (ON) */
+input:checked + .slider:before {
+    transform: translateX(46px); /* Mueve el círculo a la derecha */
+}
+
+/* Estilo cuando el input no está marcado (OFF) */
+input:not(:checked) + .slider {
+    background-color: #f02213; /* Rojo cuando está apagado */
+}
+
+/* Estilo para el círculo cuando el input no está marcado (OFF) */
+input:not(:checked) + .slider:before {
+    transform: translateX(0);
+}
+
+/* Estilo del texto dentro del slider */
+.slider:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+/* Agregamos el texto "ON" y "OFF" en el slider */
+input:checked + .slider:after {
+    content: "ON";
+    left: 30%;
+}
+
+input:not(:checked) + .slider:after {
+    content: "OFF";
+    left: 68%;
+}
+
+/* Estilo para el Combo Box */
+select {
+    width: 220px; /* Ancho del combo box */
+    padding: 10px 20px; /* Espaciado interno */
+    border: 2px solid #ccc; /* Borde gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    background-color: #f9f9f9; /* Fondo claro */
+    font-size: 13px; /* Tamaño de fuente */
+    color: #333; /* Color del texto */
+    transition: border-color 0.3s, background-color 0.3s; /* Transiciones suaves */
+    font-family: "Roboto", sans-serif;
+    font-weight: normal;
+}
+
+/* Estilo cuando el combo box está en foco (al hacer clic) */
+select:focus {
+    outline: none; /* Elimina el borde azul predeterminado */
+    border-color: #c0c0c0; /* Borde azul cuando está en foco */
+    background-color: #FFF; /* Fondo azul claro cuando está en foco */
+}
+
+/* Estilo cuando pasas el ratón por encima del combo box */
+select:hover {
+    border-color: #6b6b6b; /* Borde verde al pasar el ratón */
+    background-color: #fafafa; /* Fondo verde claro al pasar el ratón */
+}
+
+/* Estilo para las opciones dentro del combo box */
+select option {
+    background-color: #fff; /* Fondo blanco para las opciones */
+    color: #333; /* Color del texto de las opciones */
+    padding: 10px; /* Espaciado dentro de las opciones */
+    font-size: 13px; /* Tamaño de la fuente en las opciones */
+}
+
+.contenedor {
+    padding: 30px;
+}
+
+/*PARA LOS CHECKBOX OPEN-CLOSE*/
+/* Estilo para los controles slider (ON/OFF) */
+.switch-open {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 34px;
+}
+
+/* Estilo para el input dentro del slider */
+.switch-open input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider-open {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+/* Estilo para el círculo interior (el botón que se mueve) */
+.slider-open:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    border-radius: 50%;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+}
+
+/* Estilo cuando el input está marcado (ON) */
+input:checked + .slider-open {
+    background-color: #11b017; /* Verde cuando está encendido */
+}
+
+/* Estilo para el círculo cuando el input está marcado (ON) */
+input:checked + .slider-open:before {
+    transform: translateX(56px); /* Mueve el círculo a la derecha */
+}
+
+/* Estilo cuando el input no está marcado (OFF) */
+input:not(:checked) + .slider-open {
+    background-color: #f02213; /* Rojo cuando está apagado */
+}
+
+/* Estilo para el círculo cuando el input no está marcado (OFF) */
+input:not(:checked) + .slider-open:before {
+    transform: translateX(0);
+}
+
+/* Estilo del texto dentro del slider */
+.slider-open:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+}
+
+/* Agregamos el texto "ON" y "OFF" en el slider */
+input:checked + .slider-open:after {
+    content: "OPEN";
+    left: 30%;
+}
+
+input:not(:checked) + .slider-open:after {
+    content: "CLOSE";
+    left: 65%;
+}
+
+
+.button {
+    background-color: #56296e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 12px;
+    font-family: "Yusei Magic", sans-serif;
+    font-weight: normal;
+}
+
+.button:hover {
+    background-color: #5e336d8f;
+}
+
+
+/* Estilo general para la barra de navegación */
+.navbar {
+    width: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: fixed; /* Fija la barra en la parte superior */
+    top: 0;
+    z-index: 1001;
+    left: 0; 
+}
+
+/* Botón de menú desplegable */
+.boton-despegable {
+    font-size: 24px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding-right: 3%;
+}
+
+/* Enlaces de la barra de navegación */
+.nav-links {
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    transition: all 0.3s ease;
+    
+}
+.menu-open .main-content {
+    margin-top: 200px; /* Ajusta este valor para que coincida con la altura del menú */
+}
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px;
+    display: block;
+    font-weight: bold;
+}
+
+/* Ocultar el menú en pantallas pequeñas */
+.nav-links {
+    display: none;
+}
+
+/* Mostrar el menú cuando se agrega la clase active */
+.nav-links.active {
+    display: flex;
+}
+/* Estilos para tablets y pantallas pequeñas */
+@media (max-width: 768px) {
+    /* El menú se oculta por defecto */
+    .nav-links {
+        display: none !important;
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 60px; /* Ajusta según el tamaño de tu barra */
+        right: 0;
+        width: 100%;
+        padding: 10px;
+        z-index: 999; /* Asegura que el menú esté encima de otros elementos */
+    }
+
+    /* Menú activo visible */
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    /* Botón hamburguesa visible solo en dispositivos pequeños */
+    .boton-despegable {
+        display: block;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+/* Estilos para móviles */
+@media (max-width: 480px) {
+    .navbar ul {
+        flex-direction: column;
+    }
+
+    .navbar li {
+        margin: 10px 0;
+    }
+
+    .switch {
+        width: 60px;
+        height: 30px;
+    }
+
+    .slider:before {
+        height: 20px;
+        width: 20px;
+    }
+
+    .button {
+        width: 100%;
+        font-size: 16px;
+    }
+
+    /* El menú también se oculta por defecto en móviles */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+        padding: 10px;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .boton-despegable {
+        display: block;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+        
+    }
+
+}

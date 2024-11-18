@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa Domótica</title>
+    <link rel="stylesheet" href="stylos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Dosis:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Yusei+Magic&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Menú de Navegación -->
+    <nav class="navbar">
+        <a href="javascript:void(0);" id="logo" class="logo">
+            <i class="fas fa-home"></i> Sistema Domotico
+        </a>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="javascript:void(0);" id="home-link">INICIO</a></li>
+            <li><a href="javascript:void(0);" id="controladores-link">CONTROLADORES</a></li>
+        </ul>
+        <!-- Botón hamburguesa para menú móvil -->
+        <button class="boton-despegable" id="boton-despegable">☰</button>
+    </nav>
+
+    <!-- Página Principal (Estado General) -->
+    <section id="home" class="content-section active">
+        <h2>Estado General de la Casa</h2>
+        <div class="status-container">
+            <label class="switch">
+                <input type="checkbox" id="estado-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </section>
+
+    <!-- Página de Controladores (inicialmente oculta) -->
+    <section id="controladores" class="content-section">
+        <h2>Controladores de Apertura y Cierre</h2>
+        <div class="controllers-grid">
+            <div class="controller">
+                <h3 class="estilo">Puerta</h3>
+                <label class="switch-open">
+                    <input type="checkbox">
+                    <span class="slider-open"></span>
+                </label>
+            </div>
+            <div class="controller">
+                <h3>Cortina</h3>
+                <label class="switch-open">
+                    <input type="checkbox">
+                    <span class="slider-open"></span>
+                </label>
+            </div>
+            <div class="controller">
+                <h3>Cochera</h3>
+                <label class="switch-open">
+                    <input type="checkbox">
+                    <span class="slider-open"></span>
+                </label>
+            </div>
+        </div>
+
+    <h2>Controladores de Encendido y Apagado de Luces</h2>
+    <div class="contenedor">
+        <!-- Selección de área (Combo Box) -->
+        <label for="area-select">Área de la Casa:</label>
+        <select id="area-select">
+            <option value="">Selecciona un área</option>
+            <option value="principal">Habitación principal</option>
+            <option value="secundario">Habitacion secundaria</option>
+            <option value="pasadiso">Pasadiso</option>
+            <option value="escalera">Escalera</option>
+            <option value="cocina">Cocina</option>
+        </select>
+    </div>
+        <!-- Contenedor de los controles adicionales que se mostrarán según el área seleccionada -->
+        <div id="additional-controls" class="controllers-grid">
+            <!-- Los controles adicionales se mostrarán aquí según el área seleccionada -->
+        </div>
+
+        <h2>Controlador de Temperatura</h2>
+        <div class="controller">
+            <h3>Temperatura</h3>
+            <input type="range" min="16" max="30" value="24">
+            <span>24°C</span>
+        </div>
+
+        <h2>Controlador de Cámara de Seguridad</h2>
+        <div class="controller">
+            <h3>Cámara</h3>
+            <button id="vivo" class="button">Ver en Vivo</button>
+        </div>
+
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Menú de navegación
+            const homeLink = document.getElementById("home-link");
+            const controllersLink = document.getElementById("controladores-link");
+            const homeSection = document.getElementById("home");
+            const controllersSection = document.getElementById("controladores");
+
+            // Selección de área
+            const areaSelect = document.getElementById("area-select");
+            const additionalControls = document.getElementById("additional-controls");
+
+            // Función para mostrar la sección seleccionada
+            function showSection(sectionToShow) {
+                const sections = document.querySelectorAll(".content-section");
+                sections.forEach(section => {
+                    section.classList.remove("active");
+                });
+                sectionToShow.classList.add("active");
+            }
+
+            // Mostrar la página principal por defecto
+            homeLink.addEventListener("click", function() {
+                showSection(homeSection);
+            });
+
+            // Mostrar la página de controladores
+            controllersLink.addEventListener("click", function() {
+                showSection(controllersSection);
+            });
+
+            // Función para generar los controles adicionales según el área seleccionada
+            function generateAdditionalControls(area) {
+                additionalControls.innerHTML = ""; // Limpiar los controles anteriores
+
+                if (area === "principal") {
+                    additionalControls.innerHTML = `
+                        <div class="controller-area">
+                            <h3>Luces en la Habitación Principal</h3>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    `;
+                } else if (area === "secundario") {
+                    additionalControls.innerHTML = `
+                        <div class="controller-area">
+                            <h3>Luces en la Habitación Secundaria</h3>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    `;
+                } else if (area === "pasadiso") {
+                    additionalControls.innerHTML = `
+                        <div class="controller-area">
+                            <h3>Luces en el pasadiso</h3>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    `;
+                } else if (area === "escalera") {
+                    additionalControls.innerHTML = `
+                        <div class="controller-area">
+                            <h3>Luces en la escalera</h3>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    `;
+                } else if (area === "cocina") {
+                    additionalControls.innerHTML = `
+                        <div class="controller-area">
+                            <h3>Luces en la cocina</h3>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    `;
+                }
+
+            }
+
+            // Evento para manejar la selección del área
+            areaSelect.addEventListener("change", function() {
+                const selectedArea = areaSelect.value;
+                generateAdditionalControls(selectedArea);
+            });
+
+            // Inicialización: Mostrar controles para el área seleccionada al cargar
+            generateAdditionalControls(areaSelect.value);
+        });
+        
+    </script>
+    
+    <script src="script.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>
+
+
+
+
+
